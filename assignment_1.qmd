@@ -1,0 +1,10 @@
+---
+title: "Take Home Assignment 1"
+---
+
+
+A comprehensive dataset containing transaction records for private residential properties from January 1, 2023, to March 31, 2024, is available. This dataset provides insights into the private residential market and its sub-markets in Singapore for the first quarter of 2024.
+
+```{r}
+1 + 1
+```

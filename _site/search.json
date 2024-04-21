@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ISSS609-AY2023-24T4",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "assignment_1.html",
+    "href": "assignment_1.html",
+    "title": "Take Home Assignment 1",
+    "section": "",
+    "text": "A comprehensive dataset containing transaction records for private residential properties from January 1, 2023, to March 31, 2024, is available. This dataset provides insights into the private residential market and its sub-markets in Singapore for the first quarter of 2024.\n\n1 + 1\n\n[1] 2"
+  }
+]
