@@ -1,0 +1,5 @@
+"0","ggplot(df_month, aes(x=`month`, y=`transactions`, group=`Property Type`, color=`Property Type`)) +"
+"0","  geom_line() +"
+"0","  ggtitle(""Transaction trend across different property type"")+"
+"0","  xlab(""Month"")+"
+"0","  ylab(""No. of Transactions"")"

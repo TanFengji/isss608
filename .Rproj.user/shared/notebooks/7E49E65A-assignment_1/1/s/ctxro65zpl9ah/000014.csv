@@ -1,0 +1,6 @@
+"0",""
+"0","ggplot(df_tran_area, aes(x=`month`, y=`transactions`, group=`Planning Region`, color=`Planning Region`)) +"
+"0","  geom_line() +"
+"0","  ggtitle(""Transactions across different regions"")+"
+"0","  xlab(""Month"")+"
+"0","  ylab(""No. of transactions"")"

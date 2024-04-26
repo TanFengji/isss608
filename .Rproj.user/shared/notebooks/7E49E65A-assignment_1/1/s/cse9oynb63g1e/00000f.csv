@@ -1,0 +1,2 @@
+"0","ggplot(df_month, aes(x=`month`, y=`transactions`, group=`Property Type`, color=`Property Type`)) +"
+"0","  geom_line()"

@@ -1,0 +1,10 @@
+"0","options(readr.show_col_types = FALSE)"
+"0","options(warn=-1)"
+"0",""
+"0","#merge all the CSV files (5 in total) into one dataframe"
+"0","df <- list.files(path='./data/Take-home_Ex01/data', full.names = TRUE) %>% "
+"0","  lapply(read_csv) %>% "
+"0","  bind_rows "
+"2","Warning: [38;5;232mOne or more parsing issues, call `problems()` on your data frame for details, e.g.:
+  dat <- vroom(...)
+  problems(dat)[39m"
