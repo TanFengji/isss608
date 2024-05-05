@@ -5,12 +5,13 @@ website:
   title: "ISSS609-AY2023-24T4"
   navbar:
     left:
+      - href: index.qmd
+        text: Home
       - text: Assignment
         menu:
         - assignment_1.qmd
         - assignment_2.qmd 
-      - href: index.qmd
-        text: Home
+
 
 format:
   html:
