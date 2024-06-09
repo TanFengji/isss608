@@ -1,0 +1,405 @@
+---
+title: "Take Home Assignment 3"
+---
+
+## Introduction
+
+I picked MC3 of VAST Challenge 2024. The objective of the exercise is to help help FishEye to better identify bias, track behavior changes, and infer temporal patterns from the knowledge graphs prepared by their data analysts.
+
+We will focus on task 1 in the mini-challenge, which is:
+
+1.  FishEye analysts want to better visualize changes in corporate structures over time. Create a visual analytics approach that analysts can use to highlight temporal patterns and changes in corporate structures. Examine the most active people and businesses using visual analytics.
+
+## Data Preparation
+
+#### Load library and data
+
+```{r}
+#| code-fold: true
+#| warning: false
+#| code-summary: "Show code"
+pacman::p_load(jsonlite, tidygraph, ggraph, visNetwork, graphlayouts, ggforce, skimr, tidytext, tidyverse, RColorBrewer) 
+options(warn=-1)
+
+json_text <- readLines("data/mc3.json")
+json_text_fixed <- gsub("NaN", "null", json_text)
+writeLines(json_text_fixed, "data/mc3_fixed.json")
+mc3_data <- fromJSON("data/mc3_fixed.json")
+```
+
+#### Nodes and Edges overview
+
+::: panel-tabset
+## Nodes
+
+```{r}
+#| code-fold: true
+#| warning: false
+#| code-summary: "Show code"
+mc3_nodes <- as_tibble(mc3_data$nodes)
+glimpse(mc3_nodes)
+```
+
+Only type, and id are selected.
+
+```{r}
+#| code-fold: true
+#| warning: false
+#| code-summary: "Show code"
+mc3_nodes <- as_tibble(mc3_data$nodes) %>%
+  mutate(id=as.character(id), 
+         type=as.character(type)) %>%
+  select(id, type)
+```
+
+Below is the distribution of type column in nodes. It indicates that most entities are person, with some companies and CEOs. Other entities are negligible.
+
+```{r}
+mc3_nodes$type %>% unique()
+```
+
+```{r fig.align="center", echo = FALSE,fig.width = 20}
+#| code-fold: true
+#| warning: false
+#| code-summary: "Show code"
+ggplot(data = mc3_nodes, aes(x = type)) +
+  geom_bar()
+```
+
+## Edges
+
+```{r}
+#| code-fold: true
+#| warning: false
+#| code-summary: "Show code"
+mc3_edges <- as_tibble(mc3_data$links)
+head(mc3_edges)
+```
+
+::: panel-tabset
+Only type, source, target, start_date, end_date, are selected.
+:::
+
+```{r}
+#| code-fold: true
+#| warning: false
+#| code-summary: "Show code"
+mc3_edges <- as_tibble(mc3_data$links) %>%
+  distinct() %>%
+  mutate(source = as.character(source), target=as.character(target), 
+         type = as.character(type),  start_date=as.Date(start_date), 
+         end_date=as.Date(end_date)) %>%
+  select(type, source, target, start_date, end_date) %>%
+  group_by(source, target, type) %>% 
+  summarise(weights = n()) %>% 
+  filter(source != target) %>%
+  ungroup()
+```
+
+Below is the distribution of Type column in edges. It indicates that family relationship is negligible.
+
+```{r}
+#| code-fold: true
+#| warning: false
+#| code-summary: "Show code"
+mc3_edges$type %>% unique()
+```
+
+```{r fig.align="center", echo = FALSE,fig.width = 10}
+#| code-fold: true
+#| warning: false
+#| code-summary: "Show code"
+ggplot(data = mc3_edges, aes(x = type)) +
+  geom_bar()
+
+```
+:::
+
+## Graph
+
+Start with the entity with highest number. Sharon Moon
+
+```{r}
+#| code-fold: true
+#| warning: false
+#| code-summary: "Show code"
+
+mc3_graph <- tbl_graph(nodes = mc3_nodes,
+                       edges = mc3_edges,
+                       directed = FALSE) %>% 
+  mutate(betweenness_centrality = centrality_betweenness(), 
+         closeness_centrality=centrality_closeness())
+
+```
+
+```{r}
+#| code-fold: true
+#| warning: false
+#| code-summary: "Show code"
+
+display_graph <- function() {
+  # extract node with highest betweenness centrality
+  top1_betw <- mc3_graph %>% 
+    activate(nodes) %>% 
+    as_tibble() %>% 
+    top_n(1, betweenness_centrality) %>% 
+      select(id, type)
+  
+  # extract lvl 1 edges
+  top1_betw_edges_lvl1 <- mc3_edges %>% 
+    filter(source %in% top1_betw[["id"]] | target %in% top1_betw[["id"]])
+  
+  # extract nodes from lvl 1 edges
+  id1 <- top1_betw_edges_lvl1 %>%
+    select(source) %>%
+    rename(id = source) %>% 
+    left_join(mc3_nodes, by = "id") %>% 
+    select(id, type)
+  
+  id2 <- top1_betw_edges_lvl1 %>%
+    select(target) %>%
+    rename(id = target) %>% 
+    left_join(mc3_nodes, by = "id") %>% 
+    select(id, type)
+  
+  additional_nodes_lvl1 <- rbind(id1, id2) %>% 
+    distinct %>% 
+    filter(!id %in% top1_betw[["id"]])
+  
+  # extract lvl 2 edges
+  top1_betw_edges_lvl2 <- mc3_edges %>% 
+    filter(source %in% additional_nodes_lvl1[["id"]] | target %in% additional_nodes_lvl1[["id"]])
+  
+  # extract nodes from lvl 1 edges
+  id1 <- top1_betw_edges_lvl2 %>%
+    select(source) %>%
+    rename(id = source) %>% 
+    left_join(mc3_nodes, by = "id") %>% 
+    select(id, type)
+  
+  id2 <- top1_betw_edges_lvl2 %>%
+    select(target) %>%
+    rename(id = target) %>% 
+    left_join(mc3_nodes, by = "id") %>% 
+    select(id, type)
+  
+  additional_nodes_lvl2 <- rbind(id1, id2) %>% 
+    distinct %>% 
+    filter(!id %in% top1_betw[["id"]] & !id %in% additional_nodes_lvl1[["id"]])
+  
+  # combine all nodes
+  top1_betw_nodes <- rbind(top1_betw, additional_nodes_lvl1, additional_nodes_lvl2) %>%
+    distinct()
+  
+  # combine all edges
+  top1_betw_edges <- rbind(top1_betw_edges_lvl1, top1_betw_edges_lvl2) %>% 
+    distinct()
+  
+  # colur palatte for betweenness centrality colours
+  sw_colors <- colorRampPalette(brewer.pal(3, "RdBu"))(3)
+  
+  # customise edges for plotting
+  top1_betw_edges <- top1_betw_edges %>% 
+    rename(from = source,
+           to = target) %>% 
+    mutate(title = paste0("Type: ", type), # tooltip when hover over
+           color = "#0085AF") # color of edge
+  
+  # customise nodes for plotting
+  top1_betw_nodes <- top1_betw_nodes %>% 
+    rename(group = type) %>% 
+    mutate(id.type = ifelse(id == top1_betw[["id"]], sw_colors[1], sw_colors[2])) %>%
+    mutate(title = paste0(id, "<br>Group: ", group), # tooltip when hover over
+           size = 30, # set size of nodes
+           color.border = "#013848", # border colour of nodes
+           color.background = id.type, # background colour of nodes
+           color.highlight.background = "#FF8000" # background colour of nodes when highlighted
+           )
+
+  # plot graph
+  visNetwork(top1_betw_nodes, top1_betw_edges,
+             height = "700px", width = "100%",
+             main = paste0("Network Graph of ", top1_betw[["id"]])) %>%
+    visIgraphLayout() %>%
+    visGroups(groupname = "Entity.Organization.Company", shape = "triangle") %>%
+    visGroups(groupname = "Entity.Organization.FishingCompany", shape = "triangle") %>%
+    visGroups(groupname = "Entity.Person", shape = "circle") %>%  
+    visGroups(groupname = "Entity.Person.CEO", shape = "circle") %>%  
+    visOptions(selectedBy = "group",
+               highlightNearest = list(enabled = T, degree = 1, hover = T),
+               nodesIdSelection = FALSE) %>% 
+    visLayout(randomSeed = 123)
+
+}
+
+display_graph()
+```
+
+## Visualization With Time
+
+```{r}
+#| code-fold: true
+#| warning: false
+#| code-summary: "Show code"
+mc3_edges <- as_tibble(mc3_data$links) %>%
+  mutate(source = as.character(source), target=as.character(target), 
+         type = as.character(type),  start_date=as.Date(start_date), 
+         end_date=as.Date(end_date)) %>%
+  select(type, source, target, start_date, end_date)
+
+mc3_edges$year <- as.integer(format(mc3_edges$start_date, "%Y"))
+```
+
+The year range for start time of activity: 1952 to 2035
+
+```{r}
+min(mc3_edges$year, na.rm=TRUE)
+max(mc3_edges$year, na.rm=TRUE)
+```
+
+```{r}
+#| code-fold: true
+#| warning: false
+#| code-summary: "Show code"
+
+
+display_graph_with_time <- function(entity_id, end_year) {
+  mc3_edges <- as_tibble(mc3_data$links) %>%
+    mutate(source = as.character(source), target=as.character(target), 
+           type = as.character(type),  start_date=as.Date(start_date), 
+           end_date=as.Date(end_date)) %>%
+    select(type, source, target, start_date, end_date)
+    
+  mc3_edges$year <- as.integer(format(mc3_edges$start_date, "%Y"))
+  mc3_edges <- mc3_edges %>% 
+    filter(year<=end_year) %>%
+    group_by(source, target, type) %>% 
+    summarise(weights = n()) %>% 
+    filter(source != target) %>%
+    ungroup()
+  
+  mc3_nodes <- mc3_nodes %>%
+  filter(id %in% c(mc3_edges$source, mc3_edges$target))
+  
+  mc3_graph <- tbl_graph(nodes = mc3_nodes, edges = mc3_edges, directed = FALSE) %>% 
+    mutate(betweenness_centrality = centrality_betweenness(), closeness_centrality=centrality_closeness())
+  
+  
+  # extract node with highest betweenness centrality
+  top1_betw <- mc3_nodes %>% 
+    filter(id==entity_id)
+  
+  # extract lvl 1 edges
+  top1_betw_edges_lvl1 <- mc3_edges %>% 
+    filter(source %in% top1_betw[["id"]] | target %in% top1_betw[["id"]])
+  
+  # extract nodes from lvl 1 edges
+  id1 <- top1_betw_edges_lvl1 %>%
+    select(source) %>%
+    rename(id = source) %>% 
+    left_join(mc3_nodes, by = "id") %>% 
+    select(id, type)
+  
+  id2 <- top1_betw_edges_lvl1 %>%
+    select(target) %>%
+    rename(id = target) %>% 
+    left_join(mc3_nodes, by = "id") %>% 
+    select(id, type)
+  
+  additional_nodes_lvl1 <- rbind(id1, id2) %>% 
+    distinct %>% 
+    filter(!id %in% top1_betw[["id"]])
+  
+  # extract lvl 2 edges
+  top1_betw_edges_lvl2 <- mc3_edges %>% 
+    filter(source %in% additional_nodes_lvl1[["id"]] | target %in% additional_nodes_lvl1[["id"]])
+  
+  # extract nodes from lvl 1 edges
+  id1 <- top1_betw_edges_lvl2 %>%
+    select(source) %>%
+    rename(id = source) %>% 
+    left_join(mc3_nodes, by = "id") %>% 
+    select(id, type)
+  
+  id2 <- top1_betw_edges_lvl2 %>%
+    select(target) %>%
+    rename(id = target) %>% 
+    left_join(mc3_nodes, by = "id") %>% 
+    select(id, type)
+  
+  additional_nodes_lvl2 <- rbind(id1, id2) %>% 
+    distinct %>% 
+    filter(!id %in% top1_betw[["id"]] & !id %in% additional_nodes_lvl1[["id"]])
+  
+  # combine all nodes
+  top1_betw_nodes <- rbind(top1_betw, additional_nodes_lvl1, additional_nodes_lvl2) %>%
+    distinct()
+  
+  # combine all edges
+  top1_betw_edges <- rbind(top1_betw_edges_lvl1, top1_betw_edges_lvl2) %>% 
+    distinct()
+  
+  # colur palatte for betweenness centrality colours
+  sw_colors <- colorRampPalette(brewer.pal(3, "RdBu"))(3)
+  
+  # customise edges for plotting
+  top1_betw_edges <- top1_betw_edges %>% 
+    rename(from = source,
+           to = target) %>% 
+    mutate(title = paste0("Type: ", type), # tooltip when hover over
+           color = "#0085AF") # color of edge
+  
+  # customise nodes for plotting
+  top1_betw_nodes <- top1_betw_nodes %>% 
+    rename(group = type) %>% 
+    mutate(id.type = ifelse(id == top1_betw[["id"]], sw_colors[1], sw_colors[2])) %>%
+    mutate(title = paste0(id, "<br>Group: ", group), # tooltip when hover over
+           size = 30, # set size of nodes
+           color.border = "#013848", # border colour of nodes
+           color.background = id.type, # background colour of nodes
+           color.highlight.background = "#FF8000" # background colour of nodes when highlighted
+           )
+  
+  visNetwork(top1_betw_nodes, top1_betw_edges,
+           height = "700px", width = "100%",
+           main = paste0("Network Graph of ", entity_id)) %>%
+    visIgraphLayout() %>%
+    visGroups(groupname = "Entity.Organization.Company", shape = "triangle") %>%
+    visGroups(groupname = "Entity.Organization.FishingCompany", shape = "triangle") %>%
+    visGroups(groupname = "Entity.Person", shape = "circle") %>%  
+    visGroups(groupname = "Entity.Person.CEO", shape = "circle") %>%  
+    visOptions(selectedBy = "group", highlightNearest = list(enabled = T, degree = 1, hover = T), nodesIdSelection = FALSE) %>% 
+    visLayout(randomSeed = 123)
+}
+
+```
+
+::: panel-tabset
+## 2020
+
+```{r}
+display_graph_with_time('Sharon Moon', 2020)
+```
+
+## 2025
+
+```{r}
+display_graph_with_time('Sharon Moon', 2025)
+```
+
+## 2030
+
+```{r}
+display_graph_with_time('Sharon Moon', 2030)
+```
+
+## 2035
+
+```{r}
+display_graph_with_time('Sharon Moon', 2035)
+```
+:::
+
+The display_graph_with_time(entity_id, year) provides a comprehensive way to visualize corporate structure over time. Due to the limitation of quarto, the visualization is not interactive enough, and could be improved further after migrating to shiny app with a time slider.
+
+In general, the corporate structure for Sharon Moon expands quite significantly from 2020 to 2030. Besides, the related entities (level 1 and level 2 entities) also expands. However, the growing speed slows down after 2030, probably due to slower growth rate when reaching certain capacity, or the growth of the whole business slows down from 2030 to 2035.

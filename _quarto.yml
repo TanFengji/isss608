@@ -11,6 +11,7 @@ website:
         menu:
         - assignment_1.qmd
         - assignment_2.qmd 
+        - assignment_3.qmd
 
 
 format:
