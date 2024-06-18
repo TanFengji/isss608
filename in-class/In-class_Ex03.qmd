@@ -1,6 +1,6 @@
 ```{r}
 pacman::p_load(tidyverse, ggstatsplot)
-exam <- read_csv("data/Exam_data.csv")
+exam <- read_csv("../data/Exam_data.csv")
 ```
 
 ```{r}
@@ -31,7 +31,6 @@ gghistostats(data=exam,
              normal.curve.args = list(linewidth=2), 
              xlab="English scores")
 ```
-
 
 ```{r}
 
