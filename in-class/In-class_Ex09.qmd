@@ -1,3 +1,7 @@
+---
+title: "In-class 9"
+---
+
 ```{r}
 pacman::p_load(scatterPlotMatrix, parallelPlot, cluster, factoextra, tidyverse)
 ```

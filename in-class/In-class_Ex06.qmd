@@ -1,3 +1,7 @@
+---
+title: "In-class 6"
+---
+
 ```{r}
 pacman::p_load(corporaexplorer, tidyverse, stringi, rvest)
 ```
@@ -28,18 +32,14 @@ chapters <- lapply(chapters, function(x) x[-1])
 book_titles <- read_html("https://www.esv.org/resources/esv-global-study-bible/list-of-abbreviations") %>%
   html_nodes("td:nth-child(1)") %>%
   html_text() %>%
-  .[13:78]  # Removing irrelevant elements after manual inspection.
+  .[13:78]
 
-# We add a column indicating whether a book belongs to the Old or New Testament,
-#   knowing that they contain respectively 39 and 27 books.
 testament <- c(rep("Old", 39), rep("New", 27))
 
-# Data frame with one book as one row.
+
 bible_df <- tibble::tibble(Text = chapters,
                            Book = book_titles,
                            Testament = testament)
-
-# We want each chapter to be one row, but keep the metadata (book and which testament).
 
 bible_df <- tidyr::unnest(bible_df, Text)
 ```
@@ -49,5 +49,6 @@ KJB <- prepare_data(dataset = bible_df,
                     date_based_corpus = FALSE,
                     grouping_variable = "Book",
                     columns_doc_info = c("Testament", "Book"))
+
 explore(KJB)
 ```

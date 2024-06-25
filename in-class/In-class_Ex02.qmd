@@ -1,3 +1,7 @@
+---
+title: "In-class 2"
+---
+
 ```{r}
 pacman::p_load(tidyverse, ggdist, ggthemes, ggridges, colorspace)
 exam_df <- read_csv("../data/Exam_data.csv")

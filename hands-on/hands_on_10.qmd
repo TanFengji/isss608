@@ -1,3 +1,7 @@
+---
+title: "Hands-on 10"
+---
+
 ```{r}
 pacman::p_load(lubridate, ggthemes, reactable, reactablefmtr, gt, gtExtras, tidyverse, svglite)
 ```

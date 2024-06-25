@@ -1,3 +1,7 @@
+---
+title: "In-class 4"
+---
+
 ```{r}
 pacman::p_load(tidyverse, ggstatsplot)
 exam <- read_csv("../data/Exam_data.csv")
