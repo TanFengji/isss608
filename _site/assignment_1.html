@@ -144,12 +144,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-in-class-exercises">    
         <li>
+    <a class="dropdown-item" href="./in-class/In-class_Ex01.html" rel="" target="">
+ <span class="dropdown-text">In-class_Ex01.html</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./in-class/In-class_Ex02.html" rel="" target="">
+ <span class="dropdown-text">In-class_Ex02.html</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./in-class/In-class_Ex03.html" rel="" target="">
  <span class="dropdown-text">In-class_Ex03.html</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./in-class/In-class_Ex04.html" rel="" target="">
+ <span class="dropdown-text">In-class_Ex04.html</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./in-class/In-class_Ex05.html" rel="" target="">
+ <span class="dropdown-text">In-class_Ex05.html</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./in-class/In-class_Ex06.html" rel="" target="">
+ <span class="dropdown-text">We add a column indicating whether a book belongs to the Old or New Testament,</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./in-class/In-class_Ex07.html" rel="" target="">
+ <span class="dropdown-text">In-class_Ex07.html</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./in-class/In-class_Ex09.html" rel="" target="">
  <span class="dropdown-text">In-class_Ex09.html</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Hands-on exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercises">    
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_1.html" rel="" target="">
+ <span class="dropdown-text">R graphic</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_2.html" rel="" target="">
+ <span class="dropdown-text">The Plot</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_3.html" rel="" target="">
+ <span class="dropdown-text"><strong>Programming Interactive Data Visualisation</strong></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_4.html" rel="" target="">
+ <span class="dropdown-text"><strong>Visual Statistical Analysis</strong></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_5.html" rel="" target="">
+ <span class="dropdown-text">hands_on_5.html</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_6.html" rel="" target="">
+ <span class="dropdown-text"><strong>Modelling, Visualising and Analysing Network Data with R</strong></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_7.html" rel="" target="">
+ <span class="dropdown-text"><strong>Visualising and Analysing Time-oriented Data</strong></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_8.html" rel="" target="">
+ <span class="dropdown-text"><strong>Choropleth Mapping</strong></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_9.html" rel="" target="">
+ <span class="dropdown-text"><strong>Creating Ternary Plot</strong></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_10.html" rel="" target="">
+ <span class="dropdown-text">hands_on_10.html</span></a>
   </li>  
     </ul>
   </li>
@@ -204,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="pre-processing" class="level2">
 <h2 class="anchored" data-anchor-id="pre-processing">Pre-processing</h2>
 <p>Importing libraries:</p>
-<div class="cell" data-hash="assignment_1_cache/html/unnamed-chunk-1_447c6a33a80c854416c311552c78e4aa">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -220,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Merge the datasets (5 csv) into 1 dataframe:</p>
-<div class="cell" data-hash="assignment_1_cache/html/unnamed-chunk-2_5248c850335bcef43dc904b895084cee">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">readr.show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">warn=</span><span class="sc">-</span><span class="dv">1</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -229,26 +300,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(read_csv) <span class="sc">%&gt;%</span> </span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  bind_rows </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="assignment_1_cache/html/unnamed-chunk-3_1a9c8f73a28be0e873f3360fa43a3011">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(df<span class="sc">$</span><span class="st">`</span><span class="at">Purchaser Address Indicator</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "HDB"     "Private" "N.A"    </code></pre>
 </div>
 </div>
 <p>As shown above, there are 3 types in Purchaser Address Indicator. Since we only concern about private residential market, transcation records for ‘HDB’ and ‘N.A.’ will be removed.</p>
-<div class="cell" data-hash="assignment_1_cache/html/unnamed-chunk-4_ee734059b2d4dae726e91c0c289165c9">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Purchaser Address Indicator</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Private"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Also, the ‘Sale Date’ is in string format, which will be converted to Date format for better visualization.</p>
-<div class="cell" data-hash="assignment_1_cache/html/unnamed-chunk-5_2f5cfab9321270c30676c038868e4571">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span><span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">as.Date</span>(df<span class="sc">$</span><span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>, <span class="at">format =</span> <span class="st">"%d %b %Y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="visualization-1" class="level2">
 <h2 class="anchored" data-anchor-id="visualization-1">Visualization 1</h2>
 <p>Transaction trend across different property type</p>
-<div class="cell" data-hash="assignment_1_cache/html/unnamed-chunk-6_4f113ae1b2f257a8a36da41c956fe25a">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_tran <span class="ot">=</span> df <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">month=</span><span class="fu">format</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>, <span class="at">format=</span><span class="st">"%y'%m"</span>), <span class="st">`</span><span class="at">Property Type</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">transactions =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Number of Units</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -262,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>df_tran_total<span class="sc">$</span><span class="st">`</span><span class="at">Property Type</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"Total"</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>df_tran <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_tran, df_tran_total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="assignment_1_cache/html/unnamed-chunk-7_80db7cdfae2a3616384d2494d0f35a10">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_tran, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">month</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">transactions</span><span class="st">`</span>, <span class="at">group=</span><span class="st">`</span><span class="at">Property Type</span><span class="st">`</span>, <span class="at">color=</span><span class="st">`</span><span class="at">Property Type</span><span class="st">`</span>)) <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Transaction trend across different property type"</span>)<span class="sc">+</span></span>
@@ -277,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="visualization-2" class="level2">
 <h2 class="anchored" data-anchor-id="visualization-2">Visualization 2</h2>
 <p>Unit price trend across different property type</p>
-<div class="cell" data-hash="assignment_1_cache/html/unnamed-chunk-8_b4a61db634c238ecbec33d7045e582bc">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_unit_price <span class="ot">=</span> df <span class="sc">%&gt;%</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">month=</span><span class="fu">format</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>, <span class="at">format=</span><span class="st">"%y'%m"</span>), <span class="st">`</span><span class="at">Property Type</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">`</span><span class="at">Unit Price ($ PSF)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(<span class="st">`</span><span class="at">Unit Price ($ PSF)</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -286,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 `.groups` argument.</code></pre>
 </div>
 </div>
-<div class="cell" data-hash="assignment_1_cache/html/unnamed-chunk-9_d7f7c601bfce870377a7f11aac538845">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_unit_price, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">month</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Unit Price ($ PSF)</span><span class="st">`</span>, <span class="at">group=</span><span class="st">`</span><span class="at">Property Type</span><span class="st">`</span>, <span class="at">color=</span><span class="st">`</span><span class="at">Property Type</span><span class="st">`</span>)) <span class="sc">+</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Unit Price (PSF) across different property type"</span>)<span class="sc">+</span></span>
@@ -301,14 +372,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="visualization-3" class="level2">
 <h2 class="anchored" data-anchor-id="visualization-3">Visualization 3</h2>
 <p>Transactions across different areas (East, North east, central, north, west)</p>
-<div class="cell" data-hash="assignment_1_cache/html/unnamed-chunk-10_8c563880badef298092f26f9ba55dc1c">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(df<span class="sc">$</span><span class="st">`</span><span class="at">Planning Region</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "East Region"       "North East Region" "Central Region"   
 [4] "North Region"      "West Region"      </code></pre>
 </div>
 </div>
-<div class="cell" data-hash="assignment_1_cache/html/unnamed-chunk-11_77b25c98fccb9ad5407105fd7e116451">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_tran_area <span class="ot">=</span> df <span class="sc">%&gt;%</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">month=</span><span class="fu">format</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>, <span class="at">format=</span><span class="st">"%y'%m"</span>), <span class="st">`</span><span class="at">Planning Region</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">transactions =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Number of Units</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -317,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 `.groups` argument.</code></pre>
 </div>
 </div>
-<div class="cell" data-hash="assignment_1_cache/html/unnamed-chunk-12_7f1c81192a520edfbd41565b389243f3">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_tran_area, <span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">month</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">transactions</span><span class="st">`</span>, <span class="at">group=</span><span class="st">`</span><span class="at">Planning Region</span><span class="st">`</span>, <span class="at">color=</span><span class="st">`</span><span class="at">Planning Region</span><span class="st">`</span>)) <span class="sc">+</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Transactions across different regions"</span>)<span class="sc">+</span></span>

@@ -1,0 +1,53 @@
+```{r}
+pacman::p_load(corporaexplorer, tidyverse, stringi, rvest)
+```
+
+```{r}
+bible <- readr::read_lines("http://www.gutenberg.org/cache/epub/10/pg10.txt")
+```
+
+```{r}
+bible <- paste(bible, collapse = "\n")
+start_v <- stri_locate_first_fixed(bible, "The First Book of Moses: Called Genesis")[1]
+end_v <- stri_locate_last_fixed(bible, "Amen.")[2]
+bible <- stri_sub(bible, start_v, end_v)
+books <- stri_split_regex(bible, "\n{5}") %>%
+    unlist %>%
+    .[-40]  
+
+books <- str_replace_all(books, "\n{2,}", "NEW_PARAGRAPH") %>%
+    str_replace_all("\n", " ") %>%
+    str_replace_all("NEW_PARAGRAPH", "\n\n")
+books <- books[3:68]
+
+chapters <- str_replace_all(books, "(\\d+:1 )", "NEW_CHAPTER\\1") %>%
+    stri_split_regex("NEW_CHAPTER")
+
+chapters <- lapply(chapters, function(x) x[-1])
+
+book_titles <- read_html("https://www.esv.org/resources/esv-global-study-bible/list-of-abbreviations") %>%
+  html_nodes("td:nth-child(1)") %>%
+  html_text() %>%
+  .[13:78]  # Removing irrelevant elements after manual inspection.
+
+# We add a column indicating whether a book belongs to the Old or New Testament,
+#   knowing that they contain respectively 39 and 27 books.
+testament <- c(rep("Old", 39), rep("New", 27))
+
+# Data frame with one book as one row.
+bible_df <- tibble::tibble(Text = chapters,
+                           Book = book_titles,
+                           Testament = testament)
+
+# We want each chapter to be one row, but keep the metadata (book and which testament).
+
+bible_df <- tidyr::unnest(bible_df, Text)
+```
+
+```{r}
+KJB <- prepare_data(dataset = bible_df,
+                    date_based_corpus = FALSE,
+                    grouping_variable = "Book",
+                    columns_doc_info = c("Testament", "Book"))
+explore(KJB)
+```

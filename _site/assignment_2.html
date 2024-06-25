@@ -144,12 +144,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-in-class-exercises">    
         <li>
+    <a class="dropdown-item" href="./in-class/In-class_Ex01.html" rel="" target="">
+ <span class="dropdown-text">In-class_Ex01.html</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./in-class/In-class_Ex02.html" rel="" target="">
+ <span class="dropdown-text">In-class_Ex02.html</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./in-class/In-class_Ex03.html" rel="" target="">
  <span class="dropdown-text">In-class_Ex03.html</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./in-class/In-class_Ex04.html" rel="" target="">
+ <span class="dropdown-text">In-class_Ex04.html</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./in-class/In-class_Ex05.html" rel="" target="">
+ <span class="dropdown-text">In-class_Ex05.html</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./in-class/In-class_Ex06.html" rel="" target="">
+ <span class="dropdown-text">We add a column indicating whether a book belongs to the Old or New Testament,</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./in-class/In-class_Ex07.html" rel="" target="">
+ <span class="dropdown-text">In-class_Ex07.html</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./in-class/In-class_Ex09.html" rel="" target="">
  <span class="dropdown-text">In-class_Ex09.html</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-hands-on-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Hands-on exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-hands-on-exercises">    
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_1.html" rel="" target="">
+ <span class="dropdown-text">R graphic</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_2.html" rel="" target="">
+ <span class="dropdown-text">The Plot</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_3.html" rel="" target="">
+ <span class="dropdown-text"><strong>Programming Interactive Data Visualisation</strong></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_4.html" rel="" target="">
+ <span class="dropdown-text"><strong>Visual Statistical Analysis</strong></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_5.html" rel="" target="">
+ <span class="dropdown-text">hands_on_5.html</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_6.html" rel="" target="">
+ <span class="dropdown-text"><strong>Modelling, Visualising and Analysing Network Data with R</strong></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_7.html" rel="" target="">
+ <span class="dropdown-text"><strong>Visualising and Analysing Time-oriented Data</strong></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_8.html" rel="" target="">
+ <span class="dropdown-text"><strong>Choropleth Mapping</strong></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_9.html" rel="" target="">
+ <span class="dropdown-text"><strong>Creating Ternary Plot</strong></span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./hands-on/hands_on_10.html" rel="" target="">
+ <span class="dropdown-text">hands_on_10.html</span></a>
   </li>  
     </ul>
   </li>
@@ -210,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="reproduce-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="reproduce-visualization">Reproduce visualization</h2>
 <p>The data preparation process is exactly the same as Keke’s original implementation.</p>
-<div class="cell" data-hash="assignment_2_cache/html/unnamed-chunk-1_0bd9ec4258005ac2c5125eb10e8798d6">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(ggplot2,lubridate,ggrepel, patchwork, </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               ggthemes, hrbrthemes,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>               tidyverse)</span>
@@ -241,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Reproduce visualization for central region:</p>
-<div class="cell" data-hash="assignment_2_cache/html/unnamed-chunk-2_a41d5f6011c57f7abef597b497307955">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> cleaned_data <span class="sc">%&gt;%</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Planning Region</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Central Region"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Month =</span> <span class="fu">floor_date</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>, <span class="st">"month"</span>), <span class="st">`</span><span class="at">Type of Sale</span><span class="st">`</span>, <span class="st">`</span><span class="at">Property Type</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
@@ -282,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Regarding the statement “detached houses experienced a significant rise in prices, followed by a pronounced dip, particularly within the sub-sale segment”, this can be clearly observed from the graph. However, it is worth noticing that the sale number of detached houses is quite low in the sub-sale market (21 for the whole year as shown below). The sales volume is insufficient to accurately depict the sales trend.</li>
 </ol>
-<div class="cell" data-hash="assignment_2_cache/html/unnamed-chunk-3_b5cde15aef3cdf48d3e71d14ff8a740f">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sub_sale_detach <span class="ot">&lt;-</span> cleaned_data <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Planning Region</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Central Region"</span> <span class="sc">&amp;</span> <span class="st">`</span><span class="at">Property Type</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Detached Houses"</span> <span class="sc">&amp;</span> <span class="st">`</span><span class="at">Type of Sale</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Sub Sale"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(sub_sale_detach)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -291,7 +362,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>A better approach might be remove the monthly plot based on some conditions, e.g.&nbsp;remove if sale of current month is less than 10.</p>
-<div class="cell" data-hash="assignment_2_cache/html/unnamed-chunk-4_88b79729695597f203d7dfcfef33411b">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> cleaned_data <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Planning Region</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Central Region"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Month =</span> <span class="fu">floor_date</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>, <span class="st">"month"</span>), <span class="st">`</span><span class="at">Type of Sale</span><span class="st">`</span>, <span class="st">`</span><span class="at">Property Type</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
@@ -328,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>Regarding the highlight of the fluctuation under executive condominiums compared to other property types, it is rather misleading. The graphs for different properties do not share the same y-axis scales. Highlighting fluctuations with a smaller scale can mislead users. A better visualization should have consistent scales across different property types.</li>
 </ol>
-<div class="cell" data-hash="assignment_2_cache/html/unnamed-chunk-5_203df60ee26c12c64b633dfe2c3e9684">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> cleaned_data <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Planning Region</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Central Region"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Month =</span> <span class="fu">floor_date</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>, <span class="st">"month"</span>), <span class="st">`</span><span class="at">Type of Sale</span><span class="st">`</span>, <span class="st">`</span><span class="at">Property Type</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
@@ -365,7 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>By combining critic 1 and 2, a more impartial visualization could be created.</p>
-<div class="cell" data-hash="assignment_2_cache/html/unnamed-chunk-6_ec1be695cde809125779a7b02ddd42dc">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> cleaned_data <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">Planning Region</span><span class="st">`</span> <span class="sc">==</span> <span class="st">"Central Region"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Month =</span> <span class="fu">floor_date</span>(<span class="st">`</span><span class="at">Sale Date</span><span class="st">`</span>, <span class="st">"month"</span>), <span class="st">`</span><span class="at">Type of Sale</span><span class="st">`</span>, <span class="st">`</span><span class="at">Property Type</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>

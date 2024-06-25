@@ -1,0 +1,8 @@
+```{r}
+pacman::p_load(tidyverse)
+realis <- read_csv("../data/realis2019.csv")
+
+ggplot(data = realis,
+       aes(x = `Unit Price ($ psm)`)) +
+  geom_histogram()
+```
